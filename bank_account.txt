@@ -1,1 +1,2 @@
-withdrawl: £2500
+8 Mar 2023: withdrawl: £400
+8 Mar 2023: deposit: £40

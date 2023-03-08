@@ -11,10 +11,18 @@ methods in the Bank class.
 '''
 
 import os
+from datetime import date
 
 #----Classes and Definitions----#
 
 class Bank:
+    
+    def date_now(self):
+        
+        current_date = date.today()
+        f_date = f"{current_date.day} {date.today().strftime('%b')} {current_date.year}"
+        
+        return f_date
     
     def return_balance(self):
         
@@ -34,7 +42,7 @@ class Bank:
         with open("bank_account.txt", "r") as bank:
             lines = bank.readlines()
             for line in lines:
-                print(f"{line}\n")
+                print(f"{line}")
         
         print(f"\nYour balance is £{self.return_balance()}")
         
@@ -42,9 +50,11 @@ class Bank:
                       
     def withdraw(self, user_withdraw):
         
-        with open("bank_account", "w") as bank:
+        with open("bank_account.txt", "a+") as bank:
             
-            bank.write(f"withdrawl: £{user_withdraw}\n")
+            d = Bank.date_now(self)
+            
+            bank.write(f"{d}: withdrawl: £{user_withdraw}\n")
             
         bank.close()
         
@@ -73,9 +83,11 @@ class Bank:
     
     def deposit(self, user_deposit):
         
-        with open("bank_account", "w") as bank:
+        with open("bank_account.txt", "a+") as bank:
             
-            bank.write(f"deposit: £{user_deposit}\n")
+            d = Bank.date_now(self)
+            
+            bank.write(f"{d}: deposit: £{user_deposit}\n")
             
         bank.close()
         
